@@ -79,6 +79,11 @@ public class InterfazInicial extends javax.swing.JFrame {
 
         jButtonModificarTarea.setBackground(new java.awt.Color(51, 51, 51));
         jButtonModificarTarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar_tarea.png"))); // NOI18N
+        jButtonModificarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarTareaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonModificarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
 
         jButtonVerTarea.setBackground(new java.awt.Color(51, 51, 51));
@@ -125,6 +130,14 @@ public class InterfazInicial extends javax.swing.JFrame {
         String texto="Agregar tarea";
         jButtonAgregarTarea.setToolTipText(texto);
     }//GEN-LAST:event_jButtonAgregarTareaMouseExited
+
+    private void jButtonModificarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarTareaActionPerformed
+        // TODO add your handling code here:
+        InterfazModificarTarea abrir = new InterfazModificarTarea();
+        abrir.setVisible(true);
+        String texto="Modificar tarea";
+        jButtonAgregarTarea.setToolTipText(texto);
+    }//GEN-LAST:event_jButtonModificarTareaActionPerformed
 
     /**
      * @param args the command line arguments
