@@ -79,6 +79,11 @@ public class InterfazLogin extends javax.swing.JFrame {
         jButtonInicioSes.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButtonInicioSes.setForeground(new java.awt.Color(255, 255, 255));
         jButtonInicioSes.setText("Iniciar Sesión");
+        jButtonInicioSes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInicioSesActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonInicioSes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, -1, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
@@ -91,6 +96,13 @@ public class InterfazLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    private void jButtonInicioSesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioSesActionPerformed
+        // TODO add your handling code here:
+        InterfazSelecProyect abrir = new InterfazSelecProyect();
+        abrir.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonInicioSesActionPerformed
 
     
     /**

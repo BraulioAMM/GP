@@ -79,6 +79,11 @@ public class InterfazCrearProyect extends javax.swing.JFrame {
         jButtonCrearProyecto.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButtonCrearProyecto.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCrearProyecto.setText("Crear");
+        jButtonCrearProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearProyectoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonCrearProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
 
         jButtonClose.setBackground(new java.awt.Color(102, 102, 102));
@@ -104,6 +109,13 @@ public class InterfazCrearProyect extends javax.swing.JFrame {
         //System.exit(0);
         dispose();
     }//GEN-LAST:event_jButtonCloseActionPerformed
+
+    private void jButtonCrearProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearProyectoActionPerformed
+        // TODO add your handling code here:
+        InterfazInicial abrir = new InterfazInicial();
+        abrir.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonCrearProyectoActionPerformed
 
     /**
      * @param args the command line arguments
