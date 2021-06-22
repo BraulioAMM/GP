@@ -16,6 +16,7 @@ public class InterfazInicial extends javax.swing.JFrame {
      */
     public InterfazInicial() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,7 +28,6 @@ public class InterfazInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonCrearProyecto = new javax.swing.JButton();
         jButtonAgregarTarea = new javax.swing.JButton();
         jButtonEditarUsuario = new javax.swing.JButton();
         jButtonEliminarTarea = new javax.swing.JButton();
@@ -36,19 +36,12 @@ public class InterfazInicial extends javax.swing.JFrame {
         jButtonAgregarUsuario = new javax.swing.JButton();
         jButtonEliminarUsuario = new javax.swing.JButton();
         jButtonVerUsuario = new javax.swing.JButton();
+        jButtonGantt = new javax.swing.JButton();
+        jButtonCerrarSes = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButtonCrearProyecto.setBackground(new java.awt.Color(51, 51, 51));
-        jButtonCrearProyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/project.png"))); // NOI18N
-        jButtonCrearProyecto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearProyectoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonCrearProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 50, -1, -1));
 
         jButtonAgregarTarea.setBackground(new java.awt.Color(51, 51, 51));
         jButtonAgregarTarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar_tareaV2.png"))); // NOI18N
@@ -75,6 +68,11 @@ public class InterfazInicial extends javax.swing.JFrame {
 
         jButtonEliminarTarea.setBackground(new java.awt.Color(51, 51, 51));
         jButtonEliminarTarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar_tarea.png"))); // NOI18N
+        jButtonEliminarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarTareaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonEliminarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
 
         jButtonModificarTarea.setBackground(new java.awt.Color(51, 51, 51));
@@ -88,32 +86,65 @@ public class InterfazInicial extends javax.swing.JFrame {
 
         jButtonVerTarea.setBackground(new java.awt.Color(51, 51, 51));
         jButtonVerTarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/abrir_tarea.png"))); // NOI18N
+        jButtonVerTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerTareaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonVerTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 40, -1, -1));
 
         jButtonAgregarUsuario.setBackground(new java.awt.Color(51, 51, 51));
         jButtonAgregarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pngegg.png"))); // NOI18N
+        jButtonAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAgregarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         jButtonEliminarUsuario.setBackground(new java.awt.Color(51, 51, 51));
         jButtonEliminarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar_usuario.png"))); // NOI18N
+        jButtonEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonEliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
         jButtonVerUsuario.setBackground(new java.awt.Color(51, 51, 51));
         jButtonVerUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ver_usuario.png"))); // NOI18N
+        jButtonVerUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonVerUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+
+        jButtonGantt.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonGantt.setForeground(new java.awt.Color(0, 0, 0));
+        jButtonGantt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gantt.png"))); // NOI18N
+        jButtonGantt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGanttActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonGantt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+
+        jButtonCerrarSes.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonCerrarSes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar_ses.png"))); // NOI18N
+        jButtonCerrarSes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarSesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCerrarSes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-8, -6, 1610, 1030));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-8, -6, 730, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonCrearProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearProyectoActionPerformed
-        // TODO add your handling code here:
-        InterfazCrearProyect abrir = new InterfazCrearProyect();
-        abrir.setVisible(true);
-    }//GEN-LAST:event_jButtonCrearProyectoActionPerformed
 
     private void jButtonAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarTareaActionPerformed
         // TODO add your handling code here:
@@ -123,6 +154,10 @@ public class InterfazInicial extends javax.swing.JFrame {
 
     private void jButtonEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarUsuarioActionPerformed
         // TODO add your handling code here:
+        InterfazModificarUsuario abrir = new InterfazModificarUsuario();
+        abrir.setVisible(true);
+        String texto = "Modificar Usuario";
+        jButtonAgregarTarea.setToolTipText(texto);
     }//GEN-LAST:event_jButtonEditarUsuarioActionPerformed
 
     private void jButtonAgregarTareaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAgregarTareaMouseExited
@@ -138,6 +173,61 @@ public class InterfazInicial extends javax.swing.JFrame {
         String texto="Modificar tarea";
         jButtonAgregarTarea.setToolTipText(texto);
     }//GEN-LAST:event_jButtonModificarTareaActionPerformed
+
+    private void jButtonEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarTareaActionPerformed
+        // TODO add your handling code here:
+        InterfazEliminarTarea abrir = new InterfazEliminarTarea();
+        abrir.setVisible(true);
+        String texto="Eliminar tarea";
+        jButtonAgregarTarea.setToolTipText(texto);
+    }//GEN-LAST:event_jButtonEliminarTareaActionPerformed
+
+    private void jButtonAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarUsuarioActionPerformed
+        // TODO add your handling code here:
+        InterfazAgregarUsuario abrir = new InterfazAgregarUsuario();
+        abrir.setVisible(true);
+        String txt = "Agregar Usuario";
+        jButtonAgregarTarea.setToolTipText(txt);
+    }//GEN-LAST:event_jButtonAgregarUsuarioActionPerformed
+
+    private void jButtonVerTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTareaActionPerformed
+        // TODO add your handling code here:
+        InterfazVerTarea abrir = new InterfazVerTarea();
+        abrir.setVisible(true);
+        String txt ="Ver tareas";
+        jButtonVerTarea.setToolTipText(txt);
+    }//GEN-LAST:event_jButtonVerTareaActionPerformed
+
+    private void jButtonEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarUsuarioActionPerformed
+        // TODO add your handling code here:
+        InterfazEliminarUsuario abrir = new InterfazEliminarUsuario();
+        abrir.setVisible(true);
+        String txt = "Eliminar usuario";
+        jButtonVerTarea.setToolTipText(txt);
+    }//GEN-LAST:event_jButtonEliminarUsuarioActionPerformed
+
+    private void jButtonVerUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerUsuarioActionPerformed
+        // TODO add your handling code here:
+        InterfazVerUsuarios abrir = new InterfazVerUsuarios();
+        abrir.setVisible(true);
+        String txt = "Ver Usuarios";
+        jButtonVerTarea.setToolTipText(txt);
+    }//GEN-LAST:event_jButtonVerUsuarioActionPerformed
+
+    private void jButtonGanttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGanttActionPerformed
+        // TODO add your handling code here:
+        InterfazGrafica abrir = new InterfazGrafica();
+        abrir.setVisible(true);
+        String txt = "Gráfica de Gantt";
+        jButtonVerTarea.setToolTipText(txt);
+    }//GEN-LAST:event_jButtonGanttActionPerformed
+
+    private void jButtonCerrarSesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        InterfazLogin abrir = new InterfazLogin();
+        abrir.setVisible(true);
+    }//GEN-LAST:event_jButtonCerrarSesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,10 +267,11 @@ public class InterfazInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarTarea;
     private javax.swing.JButton jButtonAgregarUsuario;
-    private javax.swing.JButton jButtonCrearProyecto;
+    private javax.swing.JButton jButtonCerrarSes;
     private javax.swing.JButton jButtonEditarUsuario;
     private javax.swing.JButton jButtonEliminarTarea;
     private javax.swing.JButton jButtonEliminarUsuario;
+    private javax.swing.JButton jButtonGantt;
     private javax.swing.JButton jButtonModificarTarea;
     private javax.swing.JButton jButtonVerTarea;
     private javax.swing.JButton jButtonVerUsuario;

@@ -140,6 +140,11 @@ public class InterfazTarea extends javax.swing.JFrame {
         jButtonAgregarTarea.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButtonAgregarTarea.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAgregarTarea.setText("Agregar");
+        jButtonAgregarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarTareaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
@@ -153,6 +158,11 @@ public class InterfazTarea extends javax.swing.JFrame {
          //System.exit(0);
          dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarTareaActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButtonAgregarTareaActionPerformed
 
     /**
      * @param args the command line arguments

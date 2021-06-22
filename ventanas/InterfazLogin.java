@@ -35,6 +35,7 @@ public class InterfazLogin extends javax.swing.JFrame {
         jTextFieldUser = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButtonInicioSes = new javax.swing.JButton();
+        jButtonRegistro = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,7 +76,7 @@ public class InterfazLogin extends javax.swing.JFrame {
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 330, -1));
 
-        jButtonInicioSes.setBackground(new java.awt.Color(102, 102, 102));
+        jButtonInicioSes.setBackground(new java.awt.Color(51, 51, 51));
         jButtonInicioSes.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jButtonInicioSes.setForeground(new java.awt.Color(255, 255, 255));
         jButtonInicioSes.setText("Iniciar Sesión");
@@ -85,6 +86,17 @@ public class InterfazLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInicioSes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, -1, -1));
+
+        jButtonRegistro.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonRegistro.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jButtonRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRegistro.setText("Registrarse");
+        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 550, -1, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
@@ -103,6 +115,12 @@ public class InterfazLogin extends javax.swing.JFrame {
         abrir.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonInicioSesActionPerformed
+
+    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+        // TODO add your handling code here
+        InterfazRegistro abrir = new InterfazRegistro();
+        abrir.setVisible(true);
+    }//GEN-LAST:event_jButtonRegistroActionPerformed
 
     
     /**
@@ -144,6 +162,7 @@ public class InterfazLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JButton jButtonInicioSes;
+    private javax.swing.JButton jButtonRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcono;

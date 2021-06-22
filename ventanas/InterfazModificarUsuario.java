@@ -9,12 +9,12 @@ package ventanas;
  *
  * @author braul
  */
-public class InterfazAgregarUsuario extends javax.swing.JFrame {
+public class InterfazModificarUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form InterfazAgregarUsuario
+     * Creates new form InterfazModificarUsuario
      */
-    public InterfazAgregarUsuario() {
+    public InterfazModificarUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -30,12 +30,12 @@ public class InterfazAgregarUsuario extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldResponsable = new javax.swing.JTextField();
-        jComboBoxTareaAsign = new javax.swing.JComboBox<>();
-        jButtonAddUser = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jComboBoxUsuarioEdit = new javax.swing.JComboBox<>();
         jTextFieldPuesto = new javax.swing.JTextField();
+        jComboBoxTarea = new javax.swing.JComboBox<>();
+        jButtonEditUser = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,31 +44,39 @@ public class InterfazAgregarUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Responsable:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tarea a la que será asignado:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jLabel3.setText("Puesto:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
-        jTextFieldResponsable.setBackground(new java.awt.Color(51, 51, 51));
-        jTextFieldResponsable.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jTextFieldResponsable.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 410, -1));
+        jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Tarea:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        jComboBoxTareaAsign.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBoxTareaAsign, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+        jComboBoxUsuarioEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBoxUsuarioEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
-        jButtonAddUser.setBackground(new java.awt.Color(51, 51, 51));
-        jButtonAddUser.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButtonAddUser.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonAddUser.setText("Agregar");
-        jButtonAddUser.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldPuesto.setBackground(new java.awt.Color(51, 51, 51));
+        jTextFieldPuesto.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jTextFieldPuesto.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jTextFieldPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 330, -1));
+
+        jComboBoxTarea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBoxTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+
+        jButtonEditUser.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonEditUser.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jButtonEditUser.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditUser.setText("Modificar");
+        jButtonEditUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddUserActionPerformed(evt);
+                jButtonEditUserActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        getContentPane().add(jButtonEditUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
         jButtonCancelar.setBackground(new java.awt.Color(51, 51, 51));
         jButtonCancelar.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -79,29 +87,19 @@ public class InterfazAgregarUsuario extends javax.swing.JFrame {
                 jButtonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Puesto:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
-
-        jTextFieldPuesto.setBackground(new java.awt.Color(51, 51, 51));
-        jTextFieldPuesto.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jTextFieldPuesto.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldPuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 410, -1));
+        getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -5, 660, 220));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
+    private void jButtonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUserActionPerformed
         // TODO add your handling code here:
         dispose();
-    }//GEN-LAST:event_jButtonAddUserActionPerformed
+    }//GEN-LAST:event_jButtonEditUserActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         // TODO add your handling code here:
@@ -125,33 +123,33 @@ public class InterfazAgregarUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazAgregarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazModificarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfazAgregarUsuario().setVisible(true);
+                new InterfazModificarUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAddUser;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JComboBox<String> jComboBoxTareaAsign;
+    private javax.swing.JButton jButtonEditUser;
+    private javax.swing.JComboBox<String> jComboBoxTarea;
+    private javax.swing.JComboBox<String> jComboBoxUsuarioEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextFieldPuesto;
-    private javax.swing.JTextField jTextFieldResponsable;
     // End of variables declaration//GEN-END:variables
 }

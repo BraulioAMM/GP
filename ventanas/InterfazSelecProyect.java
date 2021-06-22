@@ -16,6 +16,7 @@ public class InterfazSelecProyect extends javax.swing.JFrame {
      */
     public InterfazSelecProyect() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,43 +28,74 @@ public class InterfazSelecProyect extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonNuevoProyecto = new javax.swing.JButton();
+        jButtonAbrirProy = new javax.swing.JButton();
+        jButtonBorrarProy = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Nuevo Proyecto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNuevoProyecto.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonNuevoProyecto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/project_crear.png"))); // NOI18N
+        jButtonNuevoProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonNuevoProyectoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        getContentPane().add(jButtonNuevoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jButton2.setText("Abrir Proyecto");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, -1, -1));
+        jButtonAbrirProy.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonAbrirProy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/project_abrir.png"))); // NOI18N
+        jButtonAbrirProy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAbrirProyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAbrirProy, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
 
-        jButton3.setText("Eliminar Proyecto");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
+        jButtonBorrarProy.setBackground(new java.awt.Color(51, 51, 51));
+        jButtonBorrarProy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/project_borrar.png"))); // NOI18N
+        jButtonBorrarProy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarProyActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonBorrarProy, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 796, 302));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 302));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonNuevoProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoProyectoActionPerformed
         // TODO add your handling code here:
         InterfazCrearProyect abrir = new InterfazCrearProyect();
         abrir.setVisible(true);
         String texto="Crear Proyecto";
-        jButton1.setToolTipText(texto);
+        jButtonNuevoProyecto.setToolTipText(texto);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonNuevoProyectoActionPerformed
+
+    private void jButtonAbrirProyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbrirProyActionPerformed
+        // TODO add your handling code here:
+        InterfazAbrirProyecto abrir = new InterfazAbrirProyecto();
+        abrir.setVisible(true);
+        String texto="Abrir Proyecto";
+        jButtonNuevoProyecto.setToolTipText(texto);
+        dispose();
+    }//GEN-LAST:event_jButtonAbrirProyActionPerformed
+
+    private void jButtonBorrarProyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarProyActionPerformed
+        // TODO add your handling code here:
+        InterfazEliminarProyecto abrir = new InterfazEliminarProyecto();
+        abrir.setVisible(true);
+        String texto="Borrar Proyecto";
+        jButtonNuevoProyecto.setToolTipText(texto);
+        dispose();
+    }//GEN-LAST:event_jButtonBorrarProyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,9 +133,9 @@ public class InterfazSelecProyect extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAbrirProy;
+    private javax.swing.JButton jButtonBorrarProy;
+    private javax.swing.JButton jButtonNuevoProyecto;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

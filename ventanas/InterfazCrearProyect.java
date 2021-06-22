@@ -108,6 +108,8 @@ public class InterfazCrearProyect extends javax.swing.JFrame {
         // TODO add your handling code here:
         //System.exit(0);
         dispose();
+        InterfazSelecProyect abrir = new InterfazSelecProyect();
+        abrir.setVisible(true);
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
     private void jButtonCrearProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearProyectoActionPerformed

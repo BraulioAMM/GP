@@ -16,6 +16,7 @@ public class InterfazModificarTarea extends javax.swing.JFrame {
      */
     public InterfazModificarTarea() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -90,12 +91,18 @@ public class InterfazModificarTarea extends javax.swing.JFrame {
         jLabel6.setText("Prioridad:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
+        jRadioButtonBaja.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jRadioButtonBaja.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonBaja.setText("Baja");
         getContentPane().add(jRadioButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
+        jRadioButton1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Media");
         getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
+        jRadioButton2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Alta");
         getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
@@ -131,6 +138,11 @@ public class InterfazModificarTarea extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
@@ -144,6 +156,11 @@ public class InterfazModificarTarea extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
