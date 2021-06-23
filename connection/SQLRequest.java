@@ -24,7 +24,7 @@ public class SQLRequest extends LoadDriver {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "An error has occurred: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "An error has occurred: \n" + ex + "\n" + ex.getMessage());
             return false;
         }
     }
@@ -36,7 +36,7 @@ public class SQLRequest extends LoadDriver {
         try {
             System.out.println("Test correct");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "An error has occurred: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "An error has occurred: \n" + ex + "\n" + ex.getMessage());
         }
         return false;
     }

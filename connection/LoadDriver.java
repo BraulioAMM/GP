@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class LoadDriver {
 
     private static Connection connection = null;
-    private static final String DATABASE_NAME = "mydb1";
+    private static final String DATABASE_NAME = "mydb";
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/" + DATABASE_NAME;
     private static final String DATABASE_USER = "root";
     private static final String DATABASE_PASSWORD = "n#J4S#yWeMqXg%4_";
@@ -16,7 +16,7 @@ public class LoadDriver {
     public LoadDriver() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb1", "root", "n#J4S#yWeMqXg%4_");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "n#J4S#yWeMqXg%4_");
             if (connection != null) {
                 JOptionPane.showMessageDialog(null, "Connection established successfully");
             }
@@ -32,9 +32,5 @@ public class LoadDriver {
     public void disconnect() {
         connection = null;
         JOptionPane.showMessageDialog(null, "Connection finished");
-    }
-
-    public static void main(String[] args) throws SQLException {
-        new LoadDriver();
     }
 }
