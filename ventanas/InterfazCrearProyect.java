@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package ventanas;
-
+import java.sql.*;
+import clases.Conexion;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 /**
  *
  * @author braul
@@ -55,16 +58,19 @@ public class InterfazCrearProyect extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
         jTextFieldNombreProyecto.setBackground(new java.awt.Color(51, 51, 51));
-        jTextFieldNombreProyecto.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        jTextFieldNombreProyecto.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jTextFieldNombreProyecto.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jTextFieldNombreProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 400, -1));
 
         jTextFieldFecha.setBackground(new java.awt.Color(51, 51, 51));
         jTextFieldFecha.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jTextFieldFecha.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jTextFieldFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 400, -1));
 
         jTextAreaNotas.setBackground(new java.awt.Color(51, 51, 51));
         jTextAreaNotas.setColumns(20);
         jTextAreaNotas.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jTextAreaNotas.setForeground(new java.awt.Color(255, 255, 255));
         jTextAreaNotas.setRows(5);
         jScrollPane1.setViewportView(jTextAreaNotas);
 
@@ -114,9 +120,74 @@ public class InterfazCrearProyect extends javax.swing.JFrame {
 
     private void jButtonCrearProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearProyectoActionPerformed
         // TODO add your handling code here:
-        InterfazInicial abrir = new InterfazInicial();
-        abrir.setVisible(true);
-        dispose();
+        int validacion = 0;
+        String nombre_proyecto, fecha, notas;
+        nombre_proyecto = jTextFieldNombreProyecto.getText().trim();
+        fecha = jTextFieldFecha.getText().trim();
+        notas = jTextAreaNotas.getText().trim();
+        
+        if(nombre_proyecto.equals("")){
+            jTextFieldNombreProyecto.setBackground(Color.red);
+            validacion++;
+        }
+        
+        if(fecha.equals("")){
+            jTextFieldFecha.setBackground(Color.red);
+            validacion++;
+        }
+        
+        if(notas.equals("")){
+            jTextAreaNotas.setBackground(Color.red);
+            validacion++;
+        }
+        
+        
+        try{
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("select nombre_proyecto from proyecto where nombre_proyecto = '"
+                    +nombre_proyecto+ "'");
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                jTextFieldNombreProyecto.setBackground(Color.red);
+                JOptionPane.showMessageDialog(null, "Nombre de proyecto no disponible.");
+                cn.close();
+            } else{
+                cn.close();
+                if (validacion==0) {
+                    try{
+                        Connection cn2 = Conexion.conectar();
+                        PreparedStatement pst2 = cn2.prepareStatement("insert into proyecto values(?,?,?,?)");
+                        pst2.setInt(1, 0);
+                        pst2.setString(2, nombre_proyecto);
+                        pst2.setString(3, fecha);
+                        pst2.setString(4, notas);
+                        pst2.executeUpdate();
+                        cn2.close();
+                        limpiar();
+                        jTextFieldNombreProyecto.setBackground(Color.GREEN);
+                        jTextFieldFecha.setBackground(Color.GREEN);
+                        jTextAreaNotas.setBackground(Color.GREEN);
+                        JOptionPane.showMessageDialog(null, "Proyecto creado con exito.");
+                        InterfazInicial abrir = new InterfazInicial();
+                        abrir.setVisible(true);
+                        dispose();
+                        this.dispose();
+                        
+                    }catch(Exception e){
+                        System.err.println("Error en crear proyecto.");
+                        JOptionPane.showMessageDialog(null, "Error en el sistema al crear proyecto.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debes de llenar todos los campos.");
+                }
+            }
+        }catch(Exception e){
+            System.err.println("Error en validar proyecto.");
+            JOptionPane.showMessageDialog(null, "Error al comparar proyecto.");
+        }
+//        InterfazInicial abrir = new InterfazInicial();
+//        abrir.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_jButtonCrearProyectoActionPerformed
 
     /**
@@ -166,4 +237,9 @@ public class InterfazCrearProyect extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldNombreProyecto;
     // End of variables declaration//GEN-END:variables
+public void limpiar(){
+    jTextFieldNombreProyecto.setText("");
+    jTextFieldFecha.setText("");
+    jTextAreaNotas.setText("");
+}
 }

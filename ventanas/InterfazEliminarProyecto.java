@@ -5,6 +5,16 @@
  */
 package ventanas;
 
+import clases.Conexion;
+import clases.ModeloProyecto;
+import java.sql.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.ModProyecto;
+
 /**
  *
  * @author braul
@@ -16,7 +26,23 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
      */
     public InterfazEliminarProyecto() {
         initComponents();
+        llenarProyecto();
         this.setLocationRelativeTo(null);
+    }
+
+    private void llenarProyecto() {
+        ModProyecto modCli = new ModProyecto();
+        ArrayList<ModeloProyecto> listaProyecto;
+        try {
+            listaProyecto = modCli.getClientes();
+            jComboBox1.removeAllItems();
+            for (int i = 0; i < listaProyecto.size(); i++) {
+                jComboBox1.addItem(new ModeloProyecto(listaProyecto.get(i).getId_proyecto(), listaProyecto.get(i).getNombre_proyecto()));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfazAbrirProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -42,7 +68,6 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
         jLabel2.setText("Proyecto a eliminar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
 
         jButtonEliminar.setBackground(new java.awt.Color(51, 51, 51));
@@ -76,7 +101,17 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
-        dispose();
+        try {
+            int id = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).getId_proyecto();
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("delete from proyecto where id_proyecto = ?");
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el proyecto " + id);
+            dispose();
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -124,7 +159,7 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<ModeloProyecto> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

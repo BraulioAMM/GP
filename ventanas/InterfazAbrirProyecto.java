@@ -5,6 +5,13 @@
  */
 package ventanas;
 
+import clases.ModeloProyecto;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.ModProyecto;
+
 /**
  *
  * @author braul
@@ -14,9 +21,25 @@ public class InterfazAbrirProyecto extends javax.swing.JFrame {
     /**
      * Creates new form InterfazAbrirProyecto
      */
-    public InterfazAbrirProyecto() {
+    public InterfazAbrirProyecto(){
         initComponents();
+        llenarProyecto();
         this.setLocationRelativeTo(null);
+    }
+
+    private void llenarProyecto() {
+        ModProyecto modCli = new ModProyecto();
+        ArrayList<ModeloProyecto> listaProyecto;
+        try {
+            listaProyecto = modCli.getClientes();
+            jComboBox1.removeAllItems();
+            for (int i = 0; i < listaProyecto.size(); i++) {
+                jComboBox1.addItem(listaProyecto.get(i).getNombre_proyecto());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfazAbrirProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**

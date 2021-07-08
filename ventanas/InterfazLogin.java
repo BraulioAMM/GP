@@ -5,12 +5,18 @@
  */
 package ventanas;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
+import clases.Conexion;
+
 /**
  *
  * @author braul
  */
 public class InterfazLogin extends javax.swing.JFrame {
 
+        public static String user = "";
+        String pass = "";
     /**
      * Creates new form InterfazLogin
      */
@@ -111,9 +117,51 @@ public class InterfazLogin extends javax.swing.JFrame {
 
     private void jButtonInicioSesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioSesActionPerformed
         // TODO add your handling code here:
-        InterfazSelecProyect abrir = new InterfazSelecProyect();
-        abrir.setVisible(true);
-        dispose();
+        user = jTextFieldUser.getText().trim();
+        pass = jPasswordField1.getText().trim();
+        if(!user.equals("")|| !pass.equals("")){
+            try{
+                Connection cn = Conexion.conectar();
+                PreparedStatement pst = cn.prepareStatement("select nombre, contraseña from usuario where nombre = '"+user 
+                    + "' and contraseña = '"+ pass + "'");
+                ResultSet rs = pst.executeQuery();
+                if(rs.next()){
+                    String usuario = rs.getString("nombre");
+                    String contraseña = rs.getString("contraseña");
+                    InterfazSelecProyect abrir = new InterfazSelecProyect();
+                    abrir.setVisible(true);
+                    dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Datos incorrectos.");
+                    jTextFieldUser.setText("");
+                    jPasswordField1.setText("");
+                }
+            }catch(Exception e){
+                System.err.println("Error en el boton acceder"+e);
+                JOptionPane.showMessageDialog(null, "Error al iniciar sesión.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
+        }
+//        try {
+//            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sgp", "root", "");
+//            PreparedStatement pst = cn.prepareStatement("select * from usuario where usuario = ?");
+//            ResultSet rs = pst.executeQuery();
+//            if (rs.next()) {
+//                jTextFieldUser.setText(rs.getString("nombre"));
+//                jPasswordField1.setText(rs.getString("contraseña"));
+//                InterfazSelecProyect abrir = new InterfazSelecProyect();
+//                abrir.setVisible(true);
+//                dispose();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Contraseña o Usuario Incorrecto");
+//            }
+//        } catch (Exception e) {
+//
+//        }
+//        InterfazSelecProyect abrir = new InterfazSelecProyect();
+//        abrir.setVisible(true);
+//        dispose();
     }//GEN-LAST:event_jButtonInicioSesActionPerformed
 
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
@@ -122,11 +170,9 @@ public class InterfazLogin extends javax.swing.JFrame {
         abrir.setVisible(true);
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

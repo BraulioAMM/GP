@@ -5,12 +5,21 @@
  */
 package ventanas;
 
+import clases.Conexion;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import clases.Tarea.*;
+import modelo.ModeloTarea.*;
+
 /**
  *
  * @author braul
  */
 public class InterfazTarea extends javax.swing.JFrame {
-
+    String prioridad;
     /**
      * Creates new form InterfazTarea
      */
@@ -28,6 +37,7 @@ public class InterfazTarea extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botones = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -79,16 +89,31 @@ public class InterfazTarea extends javax.swing.JFrame {
         jRadioButtonBaja.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jRadioButtonBaja.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonBaja.setText("Baja");
+        jRadioButtonBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonBajaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
 
         jRadioButtonMedia.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jRadioButtonMedia.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonMedia.setText("Media");
+        jRadioButtonMedia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMediaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButtonMedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
 
         jRadioButtonAlta.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jRadioButtonAlta.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButtonAlta.setText("Alta");
+        jRadioButtonAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonAltaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jRadioButtonAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -161,8 +186,120 @@ public class InterfazTarea extends javax.swing.JFrame {
 
     private void jButtonAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarTareaActionPerformed
         // TODO add your handling code here:
+        int validacion = 0, val_boton=0;
+        String tarea, fecha_inicio, fecha_fin, responsable, notas;
+        tarea = jTextFieldTarea.getText().trim();
+        fecha_inicio = jTextFieldFechaInicio.getText().trim();
+        fecha_fin = jTextFieldFechaFin.getText().trim();
+        responsable = jTextFieldResponsable.getText().trim();
+        botones.add(jRadioButtonBaja);
+        botones.add(jRadioButtonMedia);
+        botones.add(jRadioButtonAlta);
+        notas = jTextAreaNotas.getText().trim();
+
+        if(tarea.equals("")){
+            jTextFieldTarea.setBackground(Color.red);
+            validacion++;
+        }
+        
+        if(fecha_inicio.equals("")){
+            jTextFieldFechaInicio.setBackground(Color.red);
+            validacion++;
+        }
+        
+        if(fecha_fin.equals("")){
+            jTextFieldFechaFin.setBackground(Color.red);
+            validacion++;
+        }
+        if(responsable.equals("")){
+            jTextFieldResponsable.setBackground(Color.red);
+            validacion++;
+        }
+        if(jRadioButtonBaja.isSelected()){
+            prioridad="Baja";
+            val_boton++;
+        }
+        
+        if (jRadioButtonMedia.isSelected()) {
+            prioridad="Media";
+            val_boton++;
+        }
+
+        if (jRadioButtonAlta.isSelected()) {
+            prioridad="Alta";
+            val_boton++;
+        }
+        
+        if(notas.equals("")){
+            jTextAreaNotas.setBackground(Color.red);
+            validacion++;
+        }
+
+        
+        try{
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("select nombreTarea from tarea where nombreTarea = '" +tarea+ "'");
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+                jTextFieldTarea.setBackground(Color.red);
+                JOptionPane.showMessageDialog(null, "La tarea ya existe..");
+                cn.close();
+            } else{
+                cn.close();
+                if (validacion==0) {
+                    try{
+                        Connection cn2 = Conexion.conectar();
+                        PreparedStatement pst2 = cn2.prepareStatement("insert into tarea values(?,?,?,?,?,?,?)");
+                        pst2.setInt(1, 0);
+                        pst2.setString(2, tarea);
+                        pst2.setString(3, fecha_inicio);
+                        pst2.setString(4, fecha_fin);
+                        pst2.setString(5, responsable);
+                        pst2.setString(6, prioridad);
+                        pst2.setString(7, notas);
+                        pst2.executeUpdate();
+                        cn2.close();
+                        limpiar();
+                        jTextFieldTarea.setBackground(Color.GREEN);
+                        jTextFieldFechaInicio.setBackground(Color.GREEN);
+                        jTextFieldFechaFin.setBackground(Color.GREEN);
+                        jTextFieldResponsable.setBackground(Color.GREEN);
+                        jTextAreaNotas.setBackground(Color.GREEN);
+                        JOptionPane.showMessageDialog(null, "Registro exitoso.");
+                        this.dispose();
+                        
+                    }catch(Exception e){
+                        System.err.println("Error en registrar usuario.");
+                        JOptionPane.showMessageDialog(null, "Error en el sistema al registrarse.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Debes de llenar todos los campos.");
+                }
+            }
+        }catch(Exception e){
+            System.err.println("Error en validar usuario.");
+            JOptionPane.showMessageDialog(null, "Error al comparar usuario.");
+        }
         dispose();
     }//GEN-LAST:event_jButtonAgregarTareaActionPerformed
+
+    private void jRadioButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonBajaActionPerformed
+        // TODO add your handling code here:
+        jRadioButtonAlta.setSelected(false);
+        jRadioButtonMedia.setSelected(false);
+    }//GEN-LAST:event_jRadioButtonBajaActionPerformed
+
+    private void jRadioButtonMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMediaActionPerformed
+        // TODO add your handling code here:
+        jRadioButtonAlta.setSelected(false);
+        jRadioButtonBaja.setSelected(false);
+    }//GEN-LAST:event_jRadioButtonMediaActionPerformed
+
+    private void jRadioButtonAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAltaActionPerformed
+        // TODO add your handling code here:
+        jRadioButtonBaja.setSelected(false);
+        jRadioButtonMedia.setSelected(false);
+    }//GEN-LAST:event_jRadioButtonAltaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,6 +337,7 @@ public class InterfazTarea extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup botones;
     private javax.swing.JButton jButtonAgregarTarea;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
@@ -219,4 +357,11 @@ public class InterfazTarea extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldResponsable;
     private javax.swing.JTextField jTextFieldTarea;
     // End of variables declaration//GEN-END:variables
+public void limpiar(){
+    jTextFieldTarea.setText("");
+    jTextFieldFechaInicio.setText("");
+    jTextFieldFechaFin.setText("");
+    jTextFieldResponsable.setText("");
+    jTextAreaNotas.setText("");
+}
 }
