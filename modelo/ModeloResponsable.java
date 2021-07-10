@@ -18,24 +18,23 @@ import java.util.ArrayList;
  * @author braul
  */
 public class ModeloResponsable {
-    public ArrayList<Usuario> getClientes() throws SQLException {
+    public ArrayList<Usuario> getResponsable() throws SQLException {
         Connection cn = Conexion.conectar();
         Statement stmt;
         ResultSet rs;
-        ArrayList<Usuario> listaProyecto = new ArrayList<>();
+        ArrayList<Usuario> listaResp = new ArrayList<>();
         try {
             stmt = cn.createStatement();
-            rs = stmt.executeQuery("select id_proyecto, nombre_proyecto from proyecto");
+            rs = stmt.executeQuery("select idTarea, responsable from tarea");
             while (rs.next()) {
                 Usuario responsable = new Usuario();
-                responsable.setId_responsable(rs.getInt("id_responsable"));
-                responsable.setNombre_responsable(rs.getString("nombre_responsable"));
-                responsable.setPuesto(rs.getString("puesto"));
-                listaProyecto.add(responsable);
+                responsable.setId_responsable(rs.getInt("idtarea"));
+                responsable.setNombre_responsable(rs.getString("responsable"));
+                listaResp.add(responsable);
             }
         } catch (SQLException e) {
 
         }
-        return listaProyecto;
+        return listaResp;
     }
 }

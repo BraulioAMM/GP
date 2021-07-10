@@ -14,6 +14,15 @@ public class Usuario {
     private String nombre_responsable;
     private String puesto;
 
+    public Usuario() {
+    }
+
+    public Usuario(int id_responsable, String nombre_responsable) {
+        this.id_responsable = id_responsable;
+        this.nombre_responsable = nombre_responsable;
+    }
+    
+
     public int getId_responsable() {
         return id_responsable;
     }
@@ -37,4 +46,11 @@ public class Usuario {
     public void setPuesto(String puesto) {
         this.puesto = puesto;
     }
+    
+    @Override
+    public String toString() {
+        return id_responsable + "-" + nombre_responsable;
+    }
+    
+    
 }

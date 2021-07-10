@@ -18,6 +18,15 @@ public class Tarea {
     private String prioridad;
     private String notas;
 
+    public Tarea() {
+    }
+
+    public Tarea(int id_tarea, String nombre_tarea) {
+        this.id_tarea = id_tarea;
+        this.nombre_tarea = nombre_tarea;
+    }
+    
+
     public int getId_tarea() {
         return id_tarea;
     }
@@ -73,6 +82,11 @@ public class Tarea {
 
     public void setNotas(String notas) {
         this.notas = notas;
+    }
+
+    @Override
+    public String toString() {
+        return id_tarea + "-" + nombre_tarea;
     }
     
 }

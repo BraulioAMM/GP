@@ -5,6 +5,16 @@
  */
 package ventanas;
 
+import clases.Conexion;
+import clases.ModeloProyecto;
+import java.sql.*;
+import clases.Tarea;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.ModeloTarea;
+
 /**
  *
  * @author braul
@@ -16,7 +26,23 @@ public class InterfazEliminarTarea extends javax.swing.JFrame {
      */
     public InterfazEliminarTarea() {
         initComponents();
+        llenarTarea();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+        private void llenarTarea() {
+        ModeloTarea modCli = new ModeloTarea();
+        ArrayList<Tarea> listaTarea;
+        try {
+            listaTarea = modCli.getClientes();
+            jComboBox1.removeAllItems();
+            for (int i = 0; i < listaTarea.size(); i++) {
+                jComboBox1.addItem(new Tarea(listaTarea.get(i).getId_tarea(), listaTarea.get(i).getNombre_tarea()));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfazAbrirProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -42,7 +68,6 @@ public class InterfazEliminarTarea extends javax.swing.JFrame {
         jLabel2.setText("Tarea a eliminar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         jButtonEliminar.setBackground(new java.awt.Color(51, 51, 51));
@@ -76,6 +101,17 @@ public class InterfazEliminarTarea extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+                        try {
+            int id = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).getId_tarea();
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("delete from tarea where idtarea = ?");
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la tarea " + id);
+            dispose();
+        } catch (Exception e) {
+
+        }
         dispose();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
@@ -122,7 +158,7 @@ public class InterfazEliminarTarea extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Tarea> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
