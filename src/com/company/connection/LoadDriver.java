@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
+ * This class is used to connnect the main system with the database
+ * 
  * @author Manuel Avila Rodriguez
  */
 public class LoadDriver {

@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * This 
+ * 
  * @author Manuel Avila Rodriguez
  */
 public class SQLRequest extends LoadDriver {
