@@ -10,11 +10,11 @@ public class PasswordEncryption {
         try {
             java.security.MessageDigest messageDigest = java.security.MessageDigest.getInstance(hashType);
             byte[] array = messageDigest.digest(text.getBytes());
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < array.length; ++i) {
-                sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
+                stringBuilder.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
             }
-            return sb.toString();
+            return stringBuilder.toString();
         } catch (java.security.NoSuchAlgorithmException e) {
             System.out.println(e.getMessage());
         }
