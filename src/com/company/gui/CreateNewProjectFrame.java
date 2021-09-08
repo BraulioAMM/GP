@@ -30,6 +30,9 @@ public class CreateNewProjectFrame extends JFrame {
         jTextFieldNombreProyecto = new JTextField();
         jTextFieldFecha = new JTextField();
 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setLayout(new GridLayout(5,5));
+
     }
 
     private void jButtonCloseActionPerformed(ActionEvent evt) {
