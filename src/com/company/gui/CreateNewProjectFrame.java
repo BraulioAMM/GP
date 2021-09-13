@@ -31,7 +31,7 @@ public class CreateNewProjectFrame extends JFrame {
         jTextFieldFecha = new JTextField();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        getContentPane().setLayout(new GridLayout(5,5));
+        getContentPane().setLayout(new GridBagLayout(5, 5));
 
     }
 
