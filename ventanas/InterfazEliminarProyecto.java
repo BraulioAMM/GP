@@ -28,6 +28,7 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
         initComponents();
         llenarProyecto();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void llenarProyecto() {
@@ -58,9 +59,11 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jButtonEliminar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -92,6 +95,17 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 200));
@@ -120,6 +134,13 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
         InterfazSelecProyect abrir = new InterfazSelecProyect();
         abrir.setVisible(true);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        InterfazSelecProyect abrir = new InterfazSelecProyect();
+        abrir.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +178,7 @@ public class InterfazEliminarProyecto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JComboBox<ModeloProyecto> jComboBox1;

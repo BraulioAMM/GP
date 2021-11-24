@@ -26,6 +26,7 @@ public class InterfazTarea extends javax.swing.JFrame {
     public InterfazTarea() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -51,14 +52,12 @@ public class InterfazTarea extends javax.swing.JFrame {
         jTextFieldFechaInicio = new javax.swing.JTextField();
         jTextFieldFechaFin = new javax.swing.JTextField();
         jTextFieldResponsable = new javax.swing.JTextField();
-        jButtonSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaNotas = new javax.swing.JTextArea();
         jButtonAgregarTarea = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -141,17 +140,6 @@ public class InterfazTarea extends javax.swing.JFrame {
         jTextFieldResponsable.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jTextFieldResponsable, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 600, -1));
 
-        jButtonSalir.setBackground(new java.awt.Color(51, 51, 51));
-        jButtonSalir.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSalir.setText("x");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, -1));
-
         jTextAreaNotas.setBackground(new java.awt.Color(51, 51, 51));
         jTextAreaNotas.setColumns(20);
         jTextAreaNotas.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -177,12 +165,6 @@ public class InterfazTarea extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        // TODO add your handling code here:
-         //System.exit(0);
-         dispose();
-    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarTareaActionPerformed
         // TODO add your handling code here:
@@ -339,7 +321,6 @@ public class InterfazTarea extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup botones;
     private javax.swing.JButton jButtonAgregarTarea;
-    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -17,6 +17,7 @@ public class InterfazModificarUsuario extends javax.swing.JFrame {
     public InterfazModificarUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

@@ -20,6 +20,7 @@ public class InterfazRegistro extends javax.swing.JFrame {
     public InterfazRegistro() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -48,7 +49,6 @@ public class InterfazRegistro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N

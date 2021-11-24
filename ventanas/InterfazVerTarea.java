@@ -5,6 +5,11 @@
  */
 package ventanas;
 
+import clases.Conexion;
+import java.sql.*;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author braul
@@ -17,6 +22,38 @@ public class InterfazVerTarea extends javax.swing.JFrame {
     public InterfazVerTarea() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        try{
+            DefaultTableModel modelo = new DefaultTableModel();
+            jTableTarea.setModel(modelo);
+            PreparedStatement pst = null;
+            ResultSet rs = null;
+            Connection cn = Conexion.conectar();
+            //String sql = "select tarea.*, responsable.nombre_responsable from tarea INNER JOIN tarea_responsable ON tarea.id_tarea=tarea_responsable.idTarea INNER JOIN responsable ON tarea_responsable.idResponsable=responsable.id_responsable";
+            String sql = "select * from tarea";
+            pst = cn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnas = rsmd.getColumnCount();
+            modelo.addColumn("ID");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Fecha Inicio");
+            modelo.addColumn("Fecha Fin");
+            modelo.addColumn("Responsable");
+            modelo.addColumn("Prioridad");
+            modelo.addColumn("Notas");
+            while(rs.next()){
+                Object[] filas = new Object[columnas];
+                for (int i = 0; i < columnas; i++) {
+                    filas[i]=rs.getObject(i+1);
+                }
+                modelo.addRow(filas);
+            }
+            
+        }catch(SQLException e){
+            System.err.println(e.toString());
+        }
     }
 
     /**
@@ -28,46 +65,51 @@ public class InterfazVerTarea extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonClose = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableTarea = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButtonClose.setBackground(new java.awt.Color(51, 51, 51));
-        jButtonClose.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jButtonClose.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonClose.setText("X");
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCloseActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tareas del proyecto");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableTarea.setBackground(new java.awt.Color(102, 102, 102));
+        jTableTarea.setForeground(new java.awt.Color(255, 255, 255));
+        jTableTarea.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Fecha Inicio", "Fecha Fin", "Responsable", "Prioridad", "Notas"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableTarea.setGridColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(jTableTarea);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 40, 730, 420));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -75,11 +117,6 @@ public class InterfazVerTarea extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButtonCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,10 +154,9 @@ public class InterfazVerTarea extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonClose;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableTarea;
     // End of variables declaration//GEN-END:variables
 }

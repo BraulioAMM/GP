@@ -38,6 +38,7 @@ public class ModeloProyecto {
         this.nombre_proyecto = nombre_proyecto;
     }
     
+    @Override
     public String toString(){
         return id_proyecto + "-" + nombre_proyecto;
     }

@@ -5,6 +5,16 @@
  */
 package ventanas;
 
+import clases.Conexion;
+import modelo.ModeloResponsable;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import clases.Usuario;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author braul
@@ -16,7 +26,24 @@ public class InterfazEliminarUsuario extends javax.swing.JFrame {
      */
     public InterfazEliminarUsuario() {
         initComponents();
+        llenarResponsables();
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    
+        private void llenarResponsables() {
+        ModeloResponsable modResp = new ModeloResponsable();
+        ArrayList<Usuario> listaResp;
+        try {
+            listaResp = modResp.getResponsable();
+            jComboBox1.removeAllItems();
+            for (int i = 0; i < listaResp.size(); i++) {
+                jComboBox1.addItem(new Usuario(listaResp.get(i).getId_responsable(), listaResp.get(i).getNombre_responsable()));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InterfazAbrirProyecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -35,7 +62,6 @@ public class InterfazEliminarUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
@@ -65,7 +91,6 @@ public class InterfazEliminarUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
@@ -77,6 +102,17 @@ public class InterfazEliminarUsuario extends javax.swing.JFrame {
 
     private void jButtonEliminarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarUserActionPerformed
         // TODO add your handling code here:
+                try {
+            int id = jComboBox1.getItemAt(jComboBox1.getSelectedIndex()).getId_responsable();
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("delete from tarea where idtarea = ?");
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el usuario " + id);
+            dispose();
+        } catch (Exception e) {
+
+        }
         dispose();
     }//GEN-LAST:event_jButtonEliminarUserActionPerformed
 
@@ -123,7 +159,7 @@ public class InterfazEliminarUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEliminarUser;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Usuario> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
